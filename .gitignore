@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+__MACOSX/
+._*
+
+# Google Drive shortcuts (no portable content, contain personal email)
+*.gdoc
+*.gsheet
+
+# IDE / build
+*.class
+target/
+.idea/
+*.iml

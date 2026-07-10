@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.Color?>
+
+<?import javafx.scene.input.KeyCodeCombination?>
+<VBox onKeyPressed="#resetTool" alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unisa.diem.seproject.MainController">
+    <MenuBar>
+        <Menu mnemonicParsing="false" text="File">
+            <MenuItem fx:id="fileChooserRef" mnemonicParsing="false" text="Load" onAction="#handleLoad" />
+            <MenuItem mnemonicParsing="false" text="Save" onAction="#handleSave" />
+            <MenuItem mnemonicParsing="false" text="Clear" onAction="#onSheetClear" />
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+            <MenuItem mnemonicParsing="false" text="Undo" onAction="#onUndo">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="Z" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                </accelerator>
+            </MenuItem>
+            <MenuItem fx:id="menuOptionCut" mnemonicParsing="false" text="Cut" onAction="#onCut">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="X" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                </accelerator>
+            </MenuItem>
+            <MenuItem fx:id="menuOptionCopy" mnemonicParsing="false" text="Copy" onAction="#onCopy">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="C" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                </accelerator>
+            </MenuItem>
+            <MenuItem fx:id="menuOptionPaste" mnemonicParsing="false" text="Paste" onAction="#onPaste">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="V" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                </accelerator>
+            </MenuItem>
+            <MenuItem fx:id="menuOptionDelete" mnemonicParsing="false" text="Delete" onAction="#onDelete">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" code="BACK_SPACE" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                </accelerator>
+            </MenuItem>
+        </Menu>
+    </MenuBar>
+
+    <!-- sheet + panels -->
+    <GridPane VBox.Vgrow="ALWAYS" VBox.vgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="85" />
+            <ColumnConstraints percentWidth="15" />
+        </columnConstraints>
+
+        <ScrollPane fx:id="canvasContainer" GridPane.vgrow="ALWAYS" />
+        <!-- right panel -->
+        <StackPane alignment="TOP_RIGHT" GridPane.columnIndex="1">
+            <!-- shapes palette -->
+            <VBox prefHeight="200.0" prefWidth="100.0">
+                <Accordion>
+                    <panes>
+                        <TitledPane animated="false" text="Tools">
+                            <AnchorPane minHeight="0.0" minWidth="0.0">
+                                <VBox>
+                                    <Button mnemonicParsing="false" onAction="#selectTool" text="Rectangle" userData="rectangle" />
+                                    <Button mnemonicParsing="false" onAction="#selectTool" text="Ellipse" userData="ellipse" />
+                                    <Button mnemonicParsing="false" onAction="#selectTool" text="Line Segment" userData="segment" />
+                                    <Button mnemonicParsing="false" onAction="#selectTool" text="Selection" userData="selection" />
+                                </VBox>
+                            </AnchorPane>
+                        </TitledPane>
+                        <TitledPane animated="false" text="Colors">
+                            <AnchorPane minHeight="0.0" minWidth="0.0">
+                                <VBox>
+                                    <Label text="Stroke" />
+                                    <ColorPicker fx:id="strokeColorPicker">
+                                        <value>
+                                            <Color/>
+                                        </value>
+                                    </ColorPicker>
+                                    <Label text="Fill" />
+                                    <ColorPicker fx:id="fillColorPicker">
+                                        <value>
+                                            <Color opacity="0.0"/>
+                                        </value>
+                                    </ColorPicker>
+                                </VBox>
+                            </AnchorPane>
+                        </TitledPane>
+                    </panes>
+                </Accordion>
+            </VBox>
+        </StackPane>
+        <rowConstraints>
+            <RowConstraints />
+        </rowConstraints>
+    </GridPane>
+   <HBox prefHeight="17.0" prefWidth="673.0" />
+</VBox>
